@@ -4,7 +4,7 @@ Dockerized version of rspamd, based on Alpine
 
 ## Quick start
 
-1.build docker image & run docker container
+1.build docker image && run docker container
 
 ```bash
 docker build -t restsend/rspamd .
@@ -16,19 +16,14 @@ docker run -d --name rspamd -p 11332:11332 -p 11333:11333 -p 11334:11334 restsen
 
 > Need to wait for the server to start up.
 
-2.test rspamd server & check spam email
-
-```bash
-curl http://localhost:11333/ping
-```
+2.check spam email
 
 ```bash
 curl --data-binary @- http://localhost:11333/symbols < example.eml
 ```
 
-3.visit the web interface
+3.visit the web interface: [http://localhost:11334](http://localhost:11334)
 
-- [http://localhost:11334](http://localhost:11334)
 - default password: `rspamd`
 
 ## Document
@@ -84,14 +79,14 @@ These also accept POST. The below endpoints all use GET:
 - `/errors` - Returns error messages from ring buffer
 - `/stat` - Returns statistics
 - `/statreset` - Returns statistics and reset countes
-- `/graph`?type=<hourly|daily|weekly|monthly> - Plots throughput graph
+- `/graph?type=<hourly|daily|weekly|monthly>` - Plots throughput graph
 - `/history` - Returns rolling history
 - `/historyreset` - Returns rolling history and resets its elements afterwards
 - `/actions` - Returns thresholds for actions
 - `/symbols` - Returns symbols in metric & their scores
 - `/maps` - Returns list of maps
 - `/neighbours` - Returns list of known peers
-- `/errors` - Returns a content of erros ring buffer
+- `/errors` - Returns a content of errors ring buffer
 - `/getmap` - Fetches contents of map according to ID passed in Map: header
 - `/fuzzydelhash` - Deletes entries from fuzzy according to content of Hash: header(s)
 - `/plugins` - Returns list of plugins or plugin specific stuff
