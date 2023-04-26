@@ -26,9 +26,19 @@ curl --data-binary @- http://localhost:11333/symbols < example.eml
 
 - default password: `rspamd`
 
-## Document
+## Log output
 
-### Listening interface
+> Official Document: [https://rspamd.com/doc/configuration/logging.html](https://rspamd.com/doc/configuration/logging.html)
+
+Currently, the log will be output to `/var/log/rspamd/rspamd.log` inside the container.
+
+If you want to output logs on the console, modify the file `rspamd/local.d/logging.inc`:
+
+```bash
+type = console
+```
+
+## Listening interface
 
 > Official Document: [https://rspamd.com/doc/quickstart.html#setting-listening-interface](https://rspamd.com/doc/quickstart.html#setting-listening-interface)
 
@@ -36,11 +46,11 @@ curl --data-binary @- http://localhost:11333/symbols < example.eml
 - `11333` - Normal worker
 - `11334` - Controller worker
 
-### Rspamd protocol
+## Rspamd protocol
 
 > Official Document: [https://rspamd.com/doc/architecture/protocol.html](https://rspamd.com/doc/architecture/protocol.html)
 
-#### Curl Example
+### Curl Example
 
 To check a message without rspamc:
 
@@ -48,7 +58,7 @@ To check a message without rspamc:
 curl --data-binary @- http://localhost:11333/symbols < file.eml
 ```
 
-#### Normal worker HTTP endpoints
+### Normal worker HTTP endpoints
 
 The following endpoints are valid on the normal worker and accept POST:
 
@@ -58,7 +68,7 @@ The below endpoints all use GET:
 
 - `/ping` - Returns just a pong HTTP reply (could be used for monitoring)
 
-#### Controller HTTP endpoints
+### Controller HTTP endpoints
 
 The following endpoints are valid merely on the controller. All of these may require Password header to be sent depending on configuration (passing this as query string works too).
 
