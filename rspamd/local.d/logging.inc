@@ -1,2 +1,2 @@
-type = console
+type = file
 level = "notice";
